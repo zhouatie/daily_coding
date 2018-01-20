@@ -89,7 +89,7 @@ app.post("/upload", upload.single('file'),(req, res) => {
     // req.body 将具有文本域数据，如果存在的话  。（上面前端代码中传递的date字段在req.body中获取）
     console.log(req.body)  // { date: '2018/1/20 下午5:25:56' }
     res.send('./uploads/'+req.file.filename)
-})
+});
 app.listen(9999);
 ```
 ##### 接下来解释下上述代码
