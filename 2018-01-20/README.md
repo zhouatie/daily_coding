@@ -12,7 +12,7 @@
 `formData.append('username', 'Chris');`
 
 ###### 方法二：利用form表单传递给formdata
-```
+```html
 <form id="myForm" name="myForm">
   <div>
     <label for="username">Enter name:</label>
@@ -29,7 +29,7 @@
 <input type="submit" value="Submit!">
 </form>
 ```
-```
+```javascript
 var myForm = document.getElementById('myForm');
 formData = new FormData(myForm);
 ```
@@ -47,7 +47,7 @@ formData = new FormData(myForm);
     └── uploads
 ```
 ##### 客户端代码
-```
+```html
  <!-- index.html -->
     <input id="file" type="file">
     <button id="btn">点击上传</button>
@@ -76,7 +76,7 @@ formData = new FormData(myForm);
     </script>
 ```
 ##### 服务端代码
-```
+```javascript
 // index.js
 var express = require("express");
 var app = express();
@@ -109,7 +109,7 @@ index.js中依赖express、multer 可以通过`npm install express multer --save
 > 其他方法详见[multer文档](https://www.npmjs.com/package/multer)
 接受一个以 fieldname 命名的文件。这个文件的信息保存在 req.file。（这里的fieldname指的是formdata.append("file",文件）中的'file'字段
 Multer 会添加一个 `body` 对象 以及 `file` 或 `files` 对象 到 express 的 `request` 对象中。`body` 对象包含表单的文本域信息，`file` 或 `files` 对象包含对象表单上传的文件信息。
-```
+```javascript
 app.post("/upload", upload.single('file'),(req, res) => {
     // req.file 是 'file' 文件的信息 （前端传递的文件类型在req.file中获取）
     // req.body 将具有文本域数据，如果存在的话 。（上面前端代码中传递的date字段在req.body中获取）
@@ -123,7 +123,7 @@ app.post("/upload", upload.single('file'),(req, res) => {
 一、formdata在控制台打印为空
 
     可通过下面方法获取：
-```
+```javascript
 var formData = new FormData();
 formData.append('username', 'Chris');
 formData.append('username', 'Bob');
