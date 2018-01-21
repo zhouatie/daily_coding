@@ -80,6 +80,13 @@ formData = new FormData(myForm);
 // index.js
 var express = require("express");
 var app = express();
+
+/*
+    1. 保存在文件夹中的文件为二进制，所以想在本地点开能预览的，取消下面fs模块引用的注释
+    2. 并在命令行中输入 npm install fs --save
+*/
+// var fs = require("fs");
+
 var multer = require("multer");
 // 这里dest对应的值是你要将上传的文件存的文件夹
 var upload = multer({dest:'./public/uploads'});
