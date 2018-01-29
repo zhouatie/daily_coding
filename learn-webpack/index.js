@@ -1,5 +1,5 @@
-require("./public/index.css")
+require("./index.css")
 var text = require("./text.js");
 
 console.log(text())
-document.write(text()+55);
+document.write(text()+559);
