@@ -1,5 +1,7 @@
-require("./index.css")
-var text = require("./text.js");
+import React from 'react'
+import ReactDOM from 'react-dom';
+import App from './App.js'
 
-console.log(text())
-document.write(text()+559);
+ReactDOM.render(
+    <App />,document.getElementById("root")
+)
