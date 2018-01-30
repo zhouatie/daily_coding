@@ -12,7 +12,7 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
@@ -39,7 +39,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement'
+      title: 'Hot Module Replacement',
+      template: './index.html'
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

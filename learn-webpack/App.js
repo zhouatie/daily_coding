@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class App extends Component {
     render(){
         return (
-            <div>我是2app</div>
+            <div>122222211我是21188881app</div>
         )
     }
 }
