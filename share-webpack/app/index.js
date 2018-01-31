@@ -1,2 +1,9 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App.js'
 import './index.css'
-document.write("hello world!！！6667999555999111")
+
+ReactDOM.render(
+    <App />, document.getElementById("root")
+)
+

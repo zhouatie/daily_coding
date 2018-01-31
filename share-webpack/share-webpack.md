@@ -156,4 +156,84 @@ use: [
 ##### 这样我们平时最基本的最简单的配置大致完成了
 
 ### 6.babel
+Babel 是一个 JavaScript 编译器，把用最新标准编写的 JavaScript 代码向下编译成可以在今天随处可用的版本。 这一过程叫做“源码到源码”编译， 也被称为转换编译。其中核心的功能可以在babel-core模块中获得。其他的部分根据用户的需求来下载：如果想与webpack一起使用，需要安装babel-loader模块；如果想使用ES6特性，需要安装babel-preset-env；如果想使用React JSX，那么需要安装babel-preset-react。当然还有一些其他的配置模块，这里并没有全部列出。接下来我们看一个简单的React例子:
+
+> 安装babel相关的：`npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
+> 安装react相关的：`npm install react -react-dom --save`
+
+webpack.config.js中加入如下代码：
+
+```javascript
+{
+    test: /(\.jsx|\.js)$/,
+    use: {
+        loader: "babel-loader",
+        options: {
+            presets: [
+                "env", "react"
+            ]
+        }
+    },
+    exclude: /node_modules/
+}
+```
+
+就能实现简易的react应用了。到目前为止public中的index.html文件都是自己写在public文件夹中的，引入js文件都是自己手动的，所以再来介绍下插件
+
+### 7.plugin
+
+loader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。
+
+**HtmlWebpackPlugin**这个插件的作用是依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html。这在每次生成的js文件名称不同时非常有用（比如添加了hash值）。在编译过程中，插件会依据此模板生成最终的html页面，会自动添加所依赖的 css, js，favicon等文件
+
+> 安装`npm install --save-dev html-webpack-plugin`
+
+webpack.config.js顶部引入`var HtmlWebpackPlugin = require('html-webpack-plugin');`
+在config中的plugins字段中添加如下代码：
+
+```javascript
+plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname , './app/index.html') // 引用app文件夹中的index.html作为模板
+        })
+    ]
+
+```
+
+index.html模板如下：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+```
+
+在终端中输入`npm run build`,接下来你将会在public文件夹中看到自动生成的index.html文件了。
+
+
+**模块热替换(Hot Module Replacement)**
+模块热替换(HMR - Hot Module Replacement)功能会在应用程序运行过程中替换、添加或删除模块，而无需重新加载整个页面。主要是通过以下几种方式，来显著加快开发速度：
+
+- 保留在完全重新加载页面时丢失的应用程序状态。
+- 只更新变更内容，以节省宝贵的开发时间。
+- 调整样式更加快速 - 几乎相当于在浏览器调试器中更改样式。
+
+之前的刷新是页面全局刷新，如果我们只想局部刷新即只刷新修改的部分，需要使用webpack的HotModuleReplacementPlugin插件，在devServer中添加hot:true参数，在webpack.config.js的plugins中添加下面的信息:
+> `new webpack.HotModuleReplacementPlugin()`
+
+
+## 参考链接
+
+> [入门 Webpack，看这篇就够了](https://segmentfault.com/a/1190000006178770#articleHeader6)
+> [博客园xfshen的webpack](http://www.cnblogs.com/xfshen/category/891429.html)
+> [webpack中文文档](https://doc.webpack-china.org/concepts/)
 
