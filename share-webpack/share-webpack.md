@@ -50,7 +50,8 @@ var config = {
     entry: "./app/index.js", // 入口文件
     output:{
         filename:"bundle.js",   //filename 用于输出文件的文件名。
-        path:path.resolve(__dirname, './public')   //目标输出目录 path 的绝对路径。__dirname
+        path:path.resolve(__dirname, './public'),   //目标输出目录 path 的绝对路径。__dirname
+        publicPath:path.resolve(__dirname, './public') //publicPath取决于你的网站根目录的位置，因为打包的文件都在网站根目录了，这些文件的引用都是基于该目录的。假设网站根目录为public，引用的图片路径是’./img.png’，如果publicPath为’/’，图片显示不了，因为图片都打包放在了dist中，那么你就要把publicPath设置为”/dist”
     }
 }
 
