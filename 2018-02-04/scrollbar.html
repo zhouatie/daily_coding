@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>无标题文档</title>
+<style>
+body {
+	margin: 0;
+}
+body,
+html {
+	height: 100%;
+	overflow: hidden;
+}
+#wrap {
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+#scrollBar {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 4px;
+	height: 100%;
+	background: rgba(0,0,0,.5);
+	opacity: 0;
+	transition: .3s opacity;
+}
+</style>
+<script src="js/transform.js"></script>
+<script>
+document.addEventListener(
+	"touchstart",
+	function(e) {
+		e.preventDefault();
+	}
+);
+function setInner() {
+	var scroll = document.querySelector("#scroll");
+	var inner = "";
+	for(var i = 0; i < 300; i++){
+		inner += "移动端事件交互 -- 讲师：莫涛"+i+"<br/>";
+	}
+	scroll.innerHTML = inner;
+}
+window.onload = function() {
+	setInner();
+	var wrap  = document.querySelector("#wrap");
+	var scroll = document.querySelector("#scroll");
+	var bar = document.querySelector('#scrollBar');
+	var callBack = {};
+	var scale = wrap.clientHeight/scroll.offsetHeight;
+	bar.style.height = wrap.clientHeight*scale + "px";
+	callBack.start = function() {
+		bar.style.opacity = 1;
+	};
+	callBack.in = function() {
+		var top =-cssTransform(scroll,"translateY")*scale;
+		cssTransform(bar,"translateY",top);
+
+	};
+	callBack.over = function() {
+		bar.style.opacity = 0;
+	};
+	mscroll(wrap,callBack);
+};
+
+</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="scroll"></div>
+	<div id="scrollBar"></div>
+</div>
+</body>
+</html>
