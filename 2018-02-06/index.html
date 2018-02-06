@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>practise</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //_options = {};
+//       function MV(options){
+//         this._options = {};
+//         this.init(options);
+//       }
+//       var obj = {};
+//
+//       MV.prototype.init = function(options){
+//         var _this = this;
+//         for(var key in options){
+//           Object.defineProperty(obj,key,{
+//             get:function(){
+//               console.log(_this._options[key],3)
+//               return _this._options[key];
+//             },
+//             set:function(newValue){
+//               obj[key] = newValue;
+//             }
+//           })
+//         }
+//         this._options = obj;
+//       }
+//
+//       var mv = new MV({age:'18'});
+//
+// console.log(mv)
+
+    </script>
+    <input id="input" type="text" name="" value="">
+    <button type="button" id="btn" name="button">按钮</button>
+    <p id="p"></p>
+    <script type="text/javascript">
+
+    var input = document.getElementById("input");
+    var btn = document.getElementById("btn");
+    var p = document.getElementById("p");
+
+    var obj = {
+      _age : 18
+    }
+    Object.defineProperty(obj,'age',{
+      get:function(){
+        console.log(obj._age,3)
+        return obj._age;
+      },
+      set:function(newValue){
+        obj._age = newValue;
+        p.innerHTML = obj.age;
+      }
+    })
+
+      console.log(obj.age)
+
+
+
+      input.oninput = function(){
+        obj.age = this.value;
+      }
+    </script>
+  </body>
+</html>
