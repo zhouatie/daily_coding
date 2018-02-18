@@ -10,18 +10,61 @@
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="400" height="400"></canvas>
     <script type="text/javascript">
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
 
       context.beginPath();
+      // 直线
       // context.moveTo(100,100);
       // context.lineTo(200,200);
-      context.arc(100,100,50,0,Math.PI,true)
-      context.closePath();
-      context.strokeStyle = "#fff";
-      context.stroke();
+      // 线宽
+      // context.lineWidth="10";
+      // 线头部
+      // context.lineCap="round"
+
+
+      // 绘制圆形
+      // context.arc(100,100,50,0,Math.PI,true);
+
+
+      // 绘制矩形
+      // 1.填充矩形
+      // context.fillStyle="red";
+      // context.fillRect(100,100,50,100)
+      // 2.描边矩形
+      // context.strokeStyle="red";
+      // context.strokeRect(100,100,50,100)
+
+
+      // 阴影
+      // context.arc(100,100,50,0,2*Math.PI,true);
+      // // 阴影颜色
+      // context.fillStyle="#fff";
+      // // 阴影模糊
+      // context.shadowBlur="20";
+      // // 阴影颜色
+      // context.shadowColor="yellow";
+      // // 阴影X方向上的偏移
+      // context.shadowOffsetX="50";
+      // // 阴影y方向上的偏移
+      // context.shadowOffsetY="50";
+
+
+      // 渐变
+      // var grd = context.createLinearGradient(100,100,100,200);
+      // grd.addColorStop(0,"pink");
+      // grd.addColorStop(1,"#fff");
+      // context.fillStyle=grd;
+      // context.fillRect(100,100,100,100)
+
+
+      //
+      // context.closePath();
+      // context.fill();
+      // context.strokeStyle = "#fff";
+      // context.stroke();
     </script>
   </body>
 </html>
