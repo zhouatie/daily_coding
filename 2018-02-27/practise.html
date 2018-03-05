@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>practise</title>
+    <style media="screen">
+      .header {
+        height:100px;
+        width:200px;
+        padding:20px;
+        background: red;
+        border:1px solid black;
+        box-sizing: border-box;
+      }
+      .content {
+        width:400px;
+        height:400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="content">
+
+      </div>
+    </div>
+    <script type="text/javascript">
+      var abc = document.querySelector(".header");
+      //console.log(abc.offsetHeight,abc.offsetWidth);
+      //offsetWidth/offsetHeight返回值包含content + padding + border，效果与e.getBoundingClientRect()相同
+
+      //console.log(abc.getBoundingClientRect())
+      // bottom：108   方块底部距离浏览器顶部的距离
+      // height:100    方块的高度
+      // left:8         方块左侧距离浏览器左侧边框的距离
+      // right:208     方块右侧距离浏览器左侧变宽的距离
+      // top:8        方块顶部距离浏览器顶部的距离
+      // width:200    方块的宽度
+      // x:8
+      // y:8
+
+      //window.getComputedStyle(abc,null);
+      /**
+        null可以为伪类
+        获得的值是他的各种样式
+      */
+
+      //console.log(abc.clientWidth,abc.clientHeight)
+      //clientWidth/clientHeight返回值只包含content + padding，如果有滚动条，也不包含滚动条
+
+      //console.log(abc.scrollWidth,abc.scrollHeight)
+
+      // scrollWidth/scrollHeight返回值包含content + padding + 溢出内容的尺寸
+
+
+
+      /*
+
+
+      */
+
+    </script>
+  </body>
+</html>
