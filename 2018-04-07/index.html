@@ -8,13 +8,43 @@
 </head>
 <body>
     <script>
-        var proxy = new Proxy({},{
-            get: function(){
-                return 3;
-            }
-        })
+        // var proxy = new Proxy({},{
+        //     get: function(){
+        //         return 3;
+        //     }
+        // })
 
-        console.log(proxy.a)
+        // console.log(proxy.a)
+
+        let a = {
+            b: function(){
+                console.log(this)
+            }
+        };
+
+        let c = {
+            b: () => {
+                console.log(this);
+            }
+        }
+
+        a.b();
+        c.b();
+
+        let d = {};
+
+         d.b = () => {
+            console.log(this)
+        }
+
+        d.b();
+
+        let e = {
+            b: function(){
+                return () => {console.log(this)}
+            }
+        }
+        e.b()();
     </script>
 </body>
 </html>
