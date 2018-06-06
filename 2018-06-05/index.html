@@ -9,22 +9,15 @@
 <body>
     <input type="text" id='text'>
     <script>
+        // 阻止中文输入
         var text = document.getElementById('text');
-        // text.oncompositionstart = function(e) {
-           // console.log(e);
-        // }
-        var bool = false;
         text.addEventListener('compositionstart', function(e){
-            console.log('start')
-            bool = true;
+            text.cacheVal = text.value;
         })
-        text.onkeydown = function(e){
-            if (bool) e.preventDefault();
-        }
         text.addEventListener('compositionend', function(e){
-            console.log('end')
-            bool = false;
+            text.value = text.cacheVal;
         })
+        
     </script>
 </body>
 </html>
