@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id='text'>
+    <script>
+        var text = document.getElementById('text');
+        // text.oncompositionstart = function(e) {
+           // console.log(e);
+        // }
+        var bool = false;
+        text.addEventListener('compositionstart', function(e){
+            console.log('start')
+            bool = true;
+        })
+        text.onkeydown = function(e){
+            if (bool) e.preventDefault();
+        }
+        text.addEventListener('compositionend', function(e){
+            console.log('end')
+            bool = false;
+        })
+    </script>
+</body>
+</html>
