@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>口琴转码器</title>
+    <style>
+        div {
+            line-height: 28px;
+        }
+        .lying {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    </div>
+    <script>
+        var str1 = '32 1 - -+035 55 56 5+035 AA AA A7+65 6 - -';
+        var s1 = '今天我 寒夜里看雪飘过 怀着冷却了的心窝票远方'
+        var str2 = '65 5 05 30+24 32 23 20+32 21 11 1+21 1';
+        var s2 = '风雨里追赶 雾里分不清影踪 天空海阔你与我可会变'
+        var str3 = '32 1 - -+035 55 56 5+035 AA AA A7+65 6 - -';
+        var s3 = '多少次 迎着冷眼与嘲笑 从没有放弃过心中的理想'
+        var str4 = '65 5 05 30+24 32 23 20+32 21 11 1+21 1';
+        var s4 = '一刹那 恍惚 若有所思的感觉 不知不觉已变淡 心里美'
+        var str5 = '067 AA AA A7+56 5 32 1+0 067 AA BB+AB C - 0';
+        var s5 = '原谅我这一生放荡不羁爱自由 也会怕有一天会跌倒'
+        var str6 = '0 0AA AA B+055 C0 B0 A+A 0AA AA BBB+A7 A - -'
+        var s6 = '背弃了理想 使人更可以 那会怕有一天只你共我'
+        var str7 = '66 76 7A A+AA BA BC C+0C B0 CB'
+        var s7 = '仍然自由自我 永远高唱我歌走遍千里'
+        var str8 = '0AA AA B 055+C0 B0 A - -+0AA AA BBB A7+A - - -'
+        var s8 = '背弃了理想 使人更可以 哪会怕有一天只你共我'
+
+        function format(str) {
+            var text = '';
+            for(var i=0;i<str.length;i++) {
+                switch(str[i]) {
+                    case '0':
+                    text += '';
+                    break;
+                    case '1':
+                    text += '3B';
+                    break;
+                    case '2':
+                    text += '3D';
+                    break;
+                    case '3':
+                    text += '4D';
+                    break;
+                    case '4':
+                    text += '5B';
+                    break;
+                    case '5':
+                    text += '5D';
+                    break;
+                    case '6':
+                    text += '6B';
+                    break;
+                    case '7':
+                    text += '(6D)';
+                    break;
+                    case 'A':
+                    text += '7B';
+                    break;
+                    case 'B':
+                    text += '7D';
+                    break;
+                    case 'C':
+                    text += '8D';
+                    break;
+                    case '+':
+                    text += ' | ';
+                    break;
+                    default:
+                    text += str[i];
+                }
+            }
+            return text;
+        }
+
+        console.log(format(str1));
+        var html = '';
+        for (var i=1;i<9;i++) {
+            html +=`<div class="lying">${format(window[`str${i}`])}</div><div>${window[`s${i}`]}</div>`;
+        }
+        document.body.innerHTML = html;
+    </script>
+</body>
+</html>
