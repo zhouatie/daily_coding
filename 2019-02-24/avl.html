@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>平衡二叉树</title>
+</head>
+<body>
+  <script>
+    var node = {
+      key: 1,
+      left: {
+        key: 2,
+        left: null,
+        right: null,
+      },
+      right: null,
+    }
+    var heightNode = function(node) {
+      if (node === null) {
+        return -1;
+      } else {
+        return Math.max(heightNode(node.left),
+        heightNode(node.right)) + 1;
+      }
+    }
+    console.log(heightNode(node));
+
+    var rotationRR = function(node) {
+      var tmp = node.right;
+      node.right = tmp.left;
+      tmp.left = node;
+      return tmp;
+    }
+
+    var rotationLL = function(node) {
+      var tmp = node.left;
+      node.left = tmp.right;
+      tmp.right = node;
+      return tmp;
+    }
+    var tree = {
+      key: 50,
+      right: {
+        left: null,
+        right: null,
+        key: 70,
+      },
+      left: {
+        key: 30,
+        left: {
+          key: 10,
+          left: null,
+          right: null,
+        },
+        right: {
+          key: 40,
+          left: {
+            key: 35,
+            left: null,
+            right: null,
+          },
+          right: {
+            key: 45,
+            left: null,
+            right: null,
+          }
+        }
+      }
+    }
+    
+    var rotationLR = function(node) {
+      // var tmp = node.left;
+      // node.left = tmp.right;
+      // tmp.right = node.left.left;
+      // node.left.left = tmp;
+
+      // 先左旋再右旋
+      node.left = rotationRR(node.left);
+      return rotationLL(node);
+    }
+    // console.log(rotationLR(tree))
+
+    var tree2 = {
+      key: 50,
+      left: {
+        key: 40,
+        right: null,
+        left: null,
+      },
+      right: {
+        key: 70,
+        left: {
+          key: 60,
+          left: {
+            key: 55,
+            left: null,
+            right: null,
+          },
+          right: {
+            key: 65,
+            left: null,
+            right: null,
+          },
+        },
+        right: {
+          key: 80,
+          left: null,
+          right: null
+        }
+      }
+    }
+    var rotationRL = function(node) {
+      // 先右旋再左旋
+      node.right = rotationLL(node.right);
+      return rotationRR(node);
+    }
+    console.log(rotationRL(tree2))
+  </script>
+</body>
+</html>
