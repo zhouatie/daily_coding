@@ -42,6 +42,18 @@
     function Graph() {
       var vertices = [];
       var adjList = new Dictionary();
+      // 向实例的空数组中添加数据
+      this.addVertex = function(v) {
+        // 存储顶点
+        vertices.push(v);
+        // 存储边
+        adjList.set(v, []);
+      }
+
+      this.addEdge = function(v, w) {
+        adjList.get(v).push(w);
+        adjList.get(w).push(v); // 如果是单向的 这句可以注释
+      }
     }
   </script>
 </body>
