@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            position: relative;
+            height: 500px;
+            list-style: none;
+        }
+        li {
+            position: absolute;
+            width: 50px;
+            bottom: 0;
+            height: 200px;
+            transition: left 0.4s;
+        }
+        li:nth-of-type(1) {
+            background: red;
+        }
+        li:nth-of-type(2) {
+            background: yellow;
+        }
+        li:nth-of-type(3) {
+            background: blue;
+        }
+        li:nth-of-type(4) {
+            background: green;
+        }
+        li:nth-of-type(5) {
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button>开始</button>
+        <ul></ul>
+        <!-- <img src="/Users/zhouatie/Desktop/bubbleSort.gif" alt=""> -->
+    </div>
+    <script>
+        const ul = document.querySelector('ul');
+        const callbacks = [];
+        const arr = [5,2,3,4,1];
+
+        let bool = true;
+
+        const button = document.querySelector('button');
+        button.onclick = function() {
+            run();
+        }
+
+        function insertRandomDom(num) {
+            var html = '';
+            arr.forEach((i, n) => {
+                html += `<li id="id${n}" style="height:${i * 50}px;left:${n * 100}px">${i}</li>`;
+            })
+            ul.innerHTML = html;
+        };
+        insertRandomDom();
+
+        function createNonSortedArray(arr) {
+            var array = new ArrayList();
+            for( var i = 0; i<arr.length; i++) {
+                array.insert(arr[i]);
+            }
+            return array;
+        }
+
+        function run() {
+            console.log('go');
+            const arr = callbacks.shift();
+            if (!arr) return;
+            setTimeout(() => {
+                const element1 = document.querySelector(`#id${arr[0]}`);
+                const element2 = document.querySelector(`#id${arr[1]}`);
+
+                const copyLeft = element1.style.left;
+                const copyId = element1.id;
+                console.log(copyLeft, copyId, 'ww');
+                element1.style.left = element2.style.left;
+                element1.id = element2.id;
+                element2.style.left = copyLeft;
+                element2.id = copyId;
+                if (callbacks.length) run(arr);
+
+            }, 800);
+        }
+
+        function ArrayList() {
+            var array = [];
+
+            this.insert = function(item) {
+                console.log(item, 'insert');
+                array.push(item);
+            }
+
+            this.toString = function() {
+                console.log('tostring');
+                return array.join();
+            }
+
+            this.bubbleSort = function() {
+                var length = array.length;
+                for(var i = 0;i<length;i++) {
+                    for(var j = 0;j<length - 1 - i; j++) {
+                        if (array[j] > array[j + 1]) {
+                            swap(array, j, j+1);
+                            callbacks.push([j, j+1]);
+                        }
+                    }
+                }
+            }
+
+            var swap = function(array, index1, index2) {
+                var aux = array[index1];
+                array[index1] = array[index2];
+                array[index2] = aux;
+            }
+        }
+        
+        var array = createNonSortedArray(arr);
+        array.bubbleSort();
+        run();
+        
+    </script>
+</body>
+</html>
