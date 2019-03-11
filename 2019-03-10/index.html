@@ -253,6 +253,8 @@
                     }
                     if (i <= j) {
                         swap(array, i, j);
+                        i++;
+                        j--;
                     }
                 }
 
@@ -266,7 +268,7 @@
         // array.selectionSort();
         // array.insertionSort();
         // array.mergeSort();
-        // array.quickSort();
+        array.quickSort();
         console.log(array.toString());
         // run();
         
