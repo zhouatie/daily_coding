@@ -42,25 +42,45 @@
         <!-- <img src="/Users/zhouatie/Desktop/bubbleSort.gif" alt=""> -->
     </div>
     <script>
-        const ul = document.querySelector('ul');
-        const callbacks = [];
-        const arr = [5,2,3,4,1];
+        // const ul = document.querySelector('ul');
+        // const callbacks = [];
+        // const arr = [5,2,3,4,1];
 
-        let bool = true;
+        // let bool = true;
 
-        const button = document.querySelector('button');
-        button.onclick = function() {
-            run();
-        }
+        // const button = document.querySelector('button');
+        // button.onclick = function() {
+        //     run();
+        // }
 
-        function insertRandomDom(num) {
-            var html = '';
-            arr.forEach((i, n) => {
-                html += `<li id="id${n}" style="height:${i * 50}px;left:${n * 100}px">${i}</li>`;
-            })
-            ul.innerHTML = html;
-        };
-        insertRandomDom();
+        // function insertRandomDom(num) {
+        //     var html = '';
+        //     arr.forEach((i, n) => {
+        //         html += `<li id="id${n}" style="height:${i * 50}px;left:${n * 100}px">${i}</li>`;
+        //     })
+        //     ul.innerHTML = html;
+        // };
+        // insertRandomDom();
+
+        // function run() {
+        //     console.log('go');
+        //     const arr = callbacks.shift();
+        //     if (!arr) return;
+        //     setTimeout(() => {
+        //         const element1 = document.querySelector(`#id${arr[0]}`);
+        //         const element2 = document.querySelector(`#id${arr[1]}`);
+
+        //         const copyLeft = element1.style.left;
+        //         const copyId = element1.id;
+        //         console.log(copyLeft, copyId, 'ww');
+        //         element1.style.left = element2.style.left;
+        //         element1.id = element2.id;
+        //         element2.style.left = copyLeft;
+        //         element2.id = copyId;
+        //         if (callbacks.length) run(arr);
+
+        //     }, 800);
+        // }
 
         function createNonSortedArray(size) {
             var array = new ArrayList();
@@ -68,26 +88,6 @@
                 array.insert(i);
             }
             return array;
-        }
-
-        function run() {
-            console.log('go');
-            const arr = callbacks.shift();
-            if (!arr) return;
-            setTimeout(() => {
-                const element1 = document.querySelector(`#id${arr[0]}`);
-                const element2 = document.querySelector(`#id${arr[1]}`);
-
-                const copyLeft = element1.style.left;
-                const copyId = element1.id;
-                console.log(copyLeft, copyId, 'ww');
-                element1.style.left = element2.style.left;
-                element1.id = element2.id;
-                element2.style.left = copyLeft;
-                element2.id = copyId;
-                if (callbacks.length) run(arr);
-
-            }, 800);
         }
 
         function ArrayList() {
@@ -115,7 +115,7 @@
                         if (array[j] > array[j + 1]) {
                             swap(array, j, j+1);
                             // 额外的运动方法，与排序无关
-                            callbacks.push([j, j+1]);
+                            // callbacks.push([j, j+1]);
                         }
                     }
                 }
@@ -207,12 +207,6 @@
                 return result;
             }
 
-            var swap = function(array, index1, index2) {
-                var aux = array[index1];
-                array[index1] = array[index2];
-                array[index2] = aux;
-            }
-
             // 快速排序
             // 首先，从数组中选择中间一项作为主元
             // 创建两个指针，左边一个指向数组的第一项，右边一个指向数组的最后一个项。
@@ -260,15 +254,21 @@
 
                 return i;
             }
+
+            var swap = function(array, index1, index2) {
+                var aux = array[index1];
+                array[index1] = array[index2];
+                array[index2] = aux;
+            }
         }
         
         var array = createNonSortedArray(9);
         console.log(array.toString());
-        // array.bubbleSort();
+        array.bubbleSort();
         // array.selectionSort();
         // array.insertionSort();
         // array.mergeSort();
-        array.quickSort();
+        // array.quickSort();
         console.log(array.toString());
         // run();
         
