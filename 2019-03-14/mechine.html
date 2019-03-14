@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function machine(name) {
+        return {
+            name,
+            doArr: [],
+            time: 0,
+            isWaitFirst: false,
+            do(method) {
+                this.doArr.push(method);
+                return this;
+            },
+            wait(time) {
+                this.time = time;
+                return this;
+            },
+            waitFirst(time) {
+                this.isWaitFirst = true;
+                this.time = time;
+                return this;
+            },
+            consoleSelf() {
+                console.log(`start ${this.name}`);
+            },
+            execute() {
+                if(!this.isWaitFirst) this.consoleSelf();
+                else this.do(`start ${this.name}`);
+
+                if (!this.doArr.length) return this;
+
+                if (this.time) {
+                    setTimeout(() => {
+                        console.log(`wait ${this.time}s`);
+                        this.executeFn();
+                    }, this.time * 1000);
+                } else this.executeFn();
+                return this;
+            },
+            executeFn() {
+                while(this.doArr.length) {
+                    console.log(`${this.name} ${this.doArr.shift()}`);
+                }
+                return this;
+            },
+        }
+    }
+    machine('atie').execute();
+    console.log('=================');
+    machine('atie').do('eat').execute();
+    console.log('=================');
+    // machine('atie').wait(5).do('eat').execute();
+    // console.log('=================');
+    machine('atie').waitFirst(5).do('eat').execute();
+
+    </script>
+</body>
+</html>
