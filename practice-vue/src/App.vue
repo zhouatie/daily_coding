@@ -24,19 +24,19 @@
     </div>
     <div @click="name1 = Date.now()">{{handleName()}}</div>
     <div class="nav">
-      <abc></abc>
+      <Menu :navs="navs"></Menu>
     </div>
   </div>
 </template>
 
 <script>
 import atieInput from './components/atieInput.vue'
-import abc from './components/menu/menu.vue'
+import Menu from './components/menu/menu.vue'
 
 export default {
-  name: 'app',
   components: {
-    abc
+    atieInput,
+    Menu
   },
   data() {
     return {
@@ -94,9 +94,6 @@ export default {
       name2: 'atie'
     }
   },
-  components: {
-    atieInput
-  },
   methods: {
     handleName() {
       return `${this.name1}${this.name2}`
@@ -135,12 +132,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
