@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!-- <input type="text" v-model="script">
+    <p v-html="script"></p> -->
     <atie-input v-model="value"></atie-input>{{value}}
     <button @click="handleChangeName">name</button>
     <button @click="handleChangeAge">age</button>
@@ -40,6 +42,7 @@ export default {
   },
   data() {
     return {
+      script: '<img src="notValidUrl" onerror=alert(document.cookie)>',
       navs: [
         {
           title: '菜单1'
